@@ -29,3 +29,28 @@ if (togglePwd && pwdInput) {
     togglePwd.textContent = mostrar ? '🙈' : '👁️';
   });
 }
+
+// === Login real (prototipo con localStorage) ===
+const form = document.querySelector('.auth-form');
+function getUsers(){ return JSON.parse(localStorage.getItem('tf_users') || '[]'); }
+function setSession(email){ localStorage.setItem('tf_session', email); }
+
+form?.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = (document.querySelector('input[name="email"]')?.value || '').toLowerCase();
+  const pass  = document.getElementById('passwordInput')?.value || '';
+  const user  = getUsers().find(u => u.email === email && u.pass === pass);
+  if (!user) { alert('Correo o contraseña incorrectos.'); return; }
+  setSession(user.email);
+  window.location.href = 'dashboard.html';
+});
+
+// Ojo de contraseña (si no lo añadiste ya)
+const togglePwd = document.getElementById('togglePwd');
+const pwdInput  = document.getElementById('passwordInput');
+togglePwd?.addEventListener('click', () => {
+  const show = pwdInput.type === 'password';
+  pwdInput.type = show ? 'text' : 'password';
+  togglePwd.textContent = show ? '🙈' : '👁️';
+  togglePwd.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+});
