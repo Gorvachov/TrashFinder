@@ -185,11 +185,13 @@ body.lock { overflow: hidden; }
   overflow: auto;                /* si el contenido crece, permite scroll */
 }
 
-.auth-card {
-  width: min(94vw, 460px);
-  background: #fff; border-radius: 28px;
-  box-shadow: var(--shadow-3);
-  padding: 28px 26px 30px;
+.auth-card{
+  width: min(92vw, 460px);       /* se adapta a pantallas pequeñas */
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.15);
+  padding: 24px 20px;            /* padding algo menor en móvil */
+  margin: 0 auto;                /* por si no usa flex, igual centra */
 }
 
 /* Campos del formulario (mínimo necesario) */
@@ -218,4 +220,5 @@ body.lock { overflow: hidden; }
 .link { color: var(--green-primary); }
 .link-muted { color: #8c8c8c; }
 .divider { text-align: center; color: #999; margin: 16px 0; }
+
 
