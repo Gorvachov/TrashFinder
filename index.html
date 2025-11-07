@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Trash Finder: reporta y encuentra contenedores, gana puntos y ayuda a mantener tu ciudad limpia." />
+  <title>Trash Finder — Una ciudad más limpia</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="navbar" role="banner">
+    <div class="container">
+      <div class="nav-content">
+        <div class="logo">
+          <img src="imagenes/logo.png" width="40" height="40" alt="Logo Trash Finder" />
+          <span class="logo-text">TRASH FINDER</span>
+        </div>
+
+        <ul class="nav-links" id="primaryNav">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#quienes-somos">Quiénes somos</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+          <button class="btn btn-secondary" type="button">Inicia sesión</button>
+          <button class="btn btn-primary" type="button">Regístrate</button>
+        </div>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú" aria-controls="primaryNav" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Una ciudad más <span class="text-green">limpia</span><br>empieza <span class="text-green">contigo</span>.</h1>
+            <p>Con nuestra solución, los ciudadanos reportan contenedores disponibles o llenos, acumulan puntos como incentivo y ayudan a que los recolectores mejoren su eficiencia con rutas optimizadas.</p>
+            <button class="btn btn-primary btn-large" type="button">Empieza ahora</button>
+          </div>
+          <div class="hero-image">
+            <div class="phone-mockup" aria-hidden="true"><div class="phone-screen"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="circle-decoration circle-1" aria-hidden="true"></div>
+      <div class="circle-decoration circle-2" aria-hidden="true"></div>
+    </section>
+
+    <!-- ¿Cómo funciona? -->
+    <section class="comofunciona" aria-labelledby="como-title">
+      <div class="container">
+        <h2 id="como-title">¿Cómo funciona <span class="text-green">Trash Finder</span>?</h2>
+        <div class="cards-grid">
+          <article class="card card-orange">
+            <div class="card-icon">
+              <div class="icon-circle orange">
+                <img src="imagenes/mapa.png" width="60" height="60" alt="Mapa" />
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Usuario</h3>
+              <p>Localiza contenedores disponibles en el mapa, deposita tus residuos y gana puntos.</p>
+              <button class="btn-card" type="button">Ver más</button>
+            </div>
+          </article>
+
+          <article class="card card-green">
+            <div class="card-icon">
+              <div class="icon-circle green">
+                <!-- Nota: si tu archivo tiene espacio en el nombre, mantenlo codificado como abajo -->
+                <img src="imagenes/alerta%201.png" width="55" height="55" alt="Alerta" />
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Recolector</h3>
+              <p>Recibe alertas cuando un contenedor está lleno y optimiza tus rutas de recolección en tiempo real.</p>
+              <button class="btn-card" type="button">Ver más</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="beneficios" id="beneficios" aria-labelledby="beneficios-title">
+      <div class="container">
+        <h2 id="beneficios-title">Beneficios</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <img src="imagenes/escoba.png" width="56" height="56" alt="Escoba" />
+            <div class="benefit-text"><h3>Calles más limpias en tu ciudad</h3></div>
+          </div>
+          <div class="benefit-card">
+            <img src="imagenes/reloj.png" width="56" height="56" alt="Reloj" />
+            <div class="benefit-text"><h3>Ahorro de tiempo para recolectores</h3></div>
+          </div>
+          <div class="benefit-card">
+            <img src="imagenes/moneda.png" width="56" height="56" alt="Moneda" />
+            <div class="benefit-text"><h3>Recompensas para usuarios responsables</h3></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Smart City -->
+    <section class="smart-city" aria-labelledby="smart-title">
+      <div class="container">
+        <div class="smart-city-content">
+          <div class="smart-city-text">
+            <h2 id="smart-title">Hacia una ciudad inteligente y sostenible</h2>
+            <p>Trash Finder impulsa la participación ciudadana, fomenta la economía circular y ayuda a que las municipalidades optimicen su gestión.</p>
+          </div>
+          <div class="smart-city-image">
+            <img src="imagenes/camion%20de%20basura.png" alt="Camión de basura" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Descarga -->
+    <section class="download-section" aria-labelledby="download-title">
+      <div class="container">
+        <div class="download-content">
+          <div class="download-phone">
+            <div class="phone-mockup-small" aria-hidden="true"><div class="phone-screen-small"></div></div>
+          </div>
+          <div class="download-text">
+            <h2 id="download-title">Bota <span class="text-green">basura</span>, gana <span class="text-green">puntos</span> y apoya la limpieza de tu ciudad</h2>
+            <div class="download-buttons">
+              <a href="#" class="store-button" aria-label="Descargar en App Store"><img src="imagenes/ios.png" alt="App Store" width="155" height="50" /></a>
+              <a href="#" class="store-button" aria-label="Descargar en Google Play"><img src="imagenes/android.png" alt="Google Play" width="168" height="50" /></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="circle-3" aria-hidden="true"></div>
+      <div class="circle-4" aria-hidden="true"></div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="placeholder" id="contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p>Próximamente: formulario y datos de contacto.</p>
+      </div>
+    </section>
+
+    <!-- Quiénes somos -->
+    <section class="placeholder" id="quienes-somos">
+      <div class="container">
+        <h2>Quiénes somos</h2>
+        <p>Próximamente: información del equipo y misión.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>© 2025 Trash Finder — Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script src="index.js" defer></script>
+</body>
+</html>
