@@ -3,8 +3,8 @@
 * { margin: 0; padding: 0; }
 
 :root{
-  --green-primary:#7BC342;
-  --green-light:#E8F5E0;
+  --green-primary:#16A34A;
+  --green-light:#7ED321;
   --orange:#FF8C42;
   --orange-light:#FFE5D4;
   --dark:#1a1a1a;
@@ -220,5 +220,6 @@ body.lock { overflow: hidden; }
 .link { color: var(--green-primary); }
 .link-muted { color: #8c8c8c; }
 .divider { text-align: center; color: #999; margin: 16px 0; }
+
 
 
