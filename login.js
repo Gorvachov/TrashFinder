@@ -1,6 +1,3 @@
-// Ajusta el tiempo de splash (ms)
-console.log('login.js CARGÓ ✅');
-
 const SPLASH_MS = 1800;
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -47,13 +44,4 @@ form?.addEventListener('submit', (e) => {
   window.location.href = 'dashboard.html';
 });
 
-// Ojo de contraseña (si no lo añadiste ya)
-const togglePwd = document.getElementById('togglePwd');
-const pwdInput  = document.getElementById('passwordInput');
-togglePwd?.addEventListener('click', () => {
-  const show = pwdInput.type === 'password';
-  pwdInput.type = show ? 'text' : 'password';
-  togglePwd.textContent = show ? '🙈' : '👁️';
-  togglePwd.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
-});
 
