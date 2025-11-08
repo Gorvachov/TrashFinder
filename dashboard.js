@@ -1,3 +1,4 @@
+console.log('[dashboard] JS cargado ✅');
 // --- Utils ---
 const log = (...a) => console.log('[dashboard]', ...a);
 
@@ -86,4 +87,5 @@ if (!me) {
     window.location.href = 'login.html';
   });
 }
+
 
