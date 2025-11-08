@@ -76,10 +76,16 @@ if (!me) {
   }
 
   // --- 4) Saludo genérico si aún mantienes #greet / #meta ---
-  document.getElementById('greet')?.textContent =
-    `Hola, ${me.nombres || me.username || ''} 👋`;
-  document.getElementById('meta')?.innerHTML =
-    `Tienes <strong>${me.puntos ?? 0}</strong> puntos acumulados 🌱`;
+  const greetEl = document.getElementById('greet');
+  if (greetEl) {
+    greetEl.textContent = `Hola, ${me.nombres || me.username || ''} 👋`;
+  }
+
+  const metaEl = document.getElementById('meta');
+  if (metaEl) {
+    metaEl.innerHTML = `Tienes <strong>${me.puntos ?? 0}</strong> puntos acumulados 🌱`;
+  }
+
 
   // --- 5) Logout ---
   document.getElementById('logoutBtn')?.addEventListener('click', () => {
@@ -87,5 +93,6 @@ if (!me) {
     window.location.href = 'login.html';
   });
 }
+
 
 
