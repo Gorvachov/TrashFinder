@@ -8,15 +8,14 @@ if (!me) {
   window.location.href = 'login.html';
 } else {
   // Normaliza una etiqueta de tipo quitando tildes, espacios extra y mayúsculas
+  const canNormalize = typeof String.prototype.normalize === 'function';
   const normalizeType = (value) => {
     if (value == null) return '';
-    return value
-      .toString()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/\s+/g, ' ')
-      .trim()
-      .toLowerCase();
+    let str = value.toString();
+    if (canNormalize) {
+      str = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+    return str.replace(/\s+/g, ' ').trim().toLowerCase();
   };
 
   const firstNonEmpty = (...values) => {
