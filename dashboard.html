@@ -19,9 +19,7 @@
     </div>
   </header>
 
-  <main class="container" style="padding: 24px 0;">
-    <h2 id="greet">Hola 👋</h2>
-    <p id="meta"></p>
+<main class="dashboard container">
 
     <!-- Vista para ciudadano -->
     <section id="view-ciudadano" class="dash-view hidden">
@@ -33,18 +31,82 @@
       <button class="btn btn-primary">Ver más consejos</button>
     </section>
 
-    <!-- Vista para recolector -->
-    <section id="view-recolector" class="dash-view hidden">
-      <h3>Panel del recolector</h3>
-      <ul>
-        <li>Contenedores llenos reportados: <strong>3</strong></li>
-        <li>Ruta sugerida: Centro → Norte → Este</li>
+  <!-- Vista para recolector -->
+<section id="view-recolector" class="dash-view hidden">
+  <header class="dash-header">
+    <div class="dash-logo-row">
+      <img src="imagenes/logo.png" alt="Trash Finder" class="dash-logo" />
+      <span class="dash-brand">TRASH FINDER</span>
+    </div>
+    <h1 id="collector-name" class="dash-title">Hola, Recolector 👋</h1>
+    <p id="collector-meta" class="dash-meta">
+      Turno: Mañana | Fecha: <span id="collector-date"></span>
+    </p>
+  </header>
+
+  <!-- Resumen del día -->
+  <section class="dash-section">
+    <div class="dash-section-header">
+      <span>📊 Resumen del día</span>
+    </div>
+    <article class="dash-card dash-summary">
+      <ul class="dash-summary-list">
+        <li>🛣️ Rutas asignadas: <span id="sum-rutas">3</span></li>
+        <li>🗑️ Tachos atendidos: <span id="sum-tachos">27/45</span></li>
+        <li>⚠️ Alertas activas: <span id="sum-alertas">2</span></li>
       </ul>
-      <button class="btn btn-primary">Iniciar ruta</button>
-    </section>
+      <div class="dash-progress">
+        <span class="dash-progress-number" id="sum-progreso">60%</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- Rutas activas -->
+  <section class="dash-section">
+    <div class="dash-section-header">
+      <span>🔍 Rutas activas</span>
+      <button class="dash-link">Ver todas →</button>
+    </div>
+
+    <article class="dash-card dash-route">
+      <div>
+        <p class="dash-route-title">Ruta #1 – San Miguel</p>
+        <p class="dash-route-meta">15 tachos | 2 alertas</p>
+      </div>
+      <button class="btn btn-outline dash-small-btn">Ver detalles</button>
+    </article>
+
+    <article class="dash-card dash-route">
+      <div>
+        <p class="dash-route-title">Ruta #2 – Callao Norte</p>
+        <p class="dash-route-meta">10 tachos | 0 alertas</p>
+      </div>
+      <button class="btn btn-outline dash-small-btn">Ver detalles</button>
+    </article>
+  </section>
+
+  <!-- Alertas urgentes -->
+  <section class="dash-section">
+    <div class="dash-section-header">
+      <span>⚠️ Alertas urgentes</span>
+      <button class="dash-link">Ver todas →</button>
+    </div>
+    <article class="dash-card">
+      <p class="dash-route-title">Tacho #03 Callao Sur</p>
+      <p class="dash-route-meta">Estado: Sensor dañado</p>
+      <button class="btn btn-outline dash-small-btn">Ver en mapa</button>
+    </article>
+  </section>
+
+  <div class="dash-actions">
+    <button class="btn btn-primary btn-block">Ver historial de jornada</button>
+  </div>
+</section>
+
   </main>
 
   <script src="dashboard.js" defer></script>
 </body>
 </html>
+
 
