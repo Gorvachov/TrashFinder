@@ -53,25 +53,14 @@ if (!me) {
     const titulo = document.getElementById('citizen-name');
     if (titulo) titulo.textContent = `Hola, ${nombre} 👋`;
 /*
-    const hoy = new Date();
-    const opts = { day: '2-digit', month: 'short', year: 'numeric' };
-    let fecha = hoy.toLocaleDateString('es-ES', opts).replace('.', '');
-    const parts = fecha.split(' ');
-    if (parts[1]) parts[1] = parts[1][0].toUpperCase() + parts[1].slice(1);
-    fecha = parts.join(' ');
-
-    const meta = document.getElementById('collector-meta');
-    if (meta) meta.innerHTML = `Turno: Mañana | Fecha: ${fecha}`;
-
-    const stats = me.stats || { rutas: 3, tachosAtendidos: 27, tachosTotal: 45, alertas: 2, progreso: 0.6 };
+    const stats = me.stats || { basuraEvitada: 23, rachaDias: 4, nivel: EcoNovato, progreso: 0.45 };
     const pct = typeof stats.progreso === 'number'
       ? Math.round(stats.progreso * 100)
-      : Math.round((stats.tachosAtendidos / Math.max(stats.tachosTotal || 1, 1)) * 100);
 
     const $ = id => document.getElementById(id);
     $('kg-basura-evitada')    && ($('kg-basura-evitada').textContent    = String(stats.basuraEvitada));
-    $('racha-dias')   && ($('racha-dias').textContent   = `${stats.tachosAtendidos}/${stats.tachosTotal}`);
-    $('nivel')  && ($('nivel').textContent  = String(stats.alertas));
+    $('racha-dias')   && ($('racha-dias').textContent   = String(stats.rachaDias);
+    $('nivel')  && ($('nivel').textContent  = String(stats.nivel));
     $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);*/
   }
 
@@ -123,6 +112,7 @@ if (!me) {
     window.location.href = 'login.html';
   });
 }
+
 
 
 
