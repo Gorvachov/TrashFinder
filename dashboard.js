@@ -52,7 +52,7 @@ if (!me) {
 
     const titulo = document.getElementById('citizen-name');
     if (titulo) titulo.textContent = `Hola, ${nombre} 👋`;
-/*
+
     const stats = me.stats || { basuraEvitada: 23, rachaDias: 4, nivel: EcoNovato, progreso: 0.45 };
     const pct = typeof stats.progreso === 'number'
       ? Math.round(stats.progreso * 100)
@@ -61,7 +61,7 @@ if (!me) {
     $('kg-basura-evitada')    && ($('kg-basura-evitada').textContent    = String(stats.basuraEvitada));
     $('racha-dias')   && ($('racha-dias').textContent   = String(stats.rachaDias);
     $('nivel')  && ($('nivel').textContent  = String(stats.nivel));
-    $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);*/
+    $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);
   }
 
 // --- 4) Vista RECOLECTOR: saludo + fecha + resumen ---
@@ -112,6 +112,7 @@ if (!me) {
     window.location.href = 'login.html';
   });
 }
+
 
 
 
