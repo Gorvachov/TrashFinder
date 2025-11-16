@@ -22,3 +22,21 @@ Edades: Adultos (mayores de 18 años)
 Nivel socioeconómico: Alto, medio y bajo
 
 Características principales:
+## 3. Principales características de la solución digital
+
+### Para ciudadanos
+* Visualización del mapa de contenedores inteligentes cercanos.
+* Registro de depósitos mediante códigos QR en los contenedores.
+* Sistema de puntos y recompensas por buenas prácticas.
+* Estadísticas de kg de basura evitada en las calles.
+* Rankings ecológicos y logros para aumentar la motivación.
+* Reportes de contenedores dañados o con fallas en el sensor.
+
+## Para trabajadores de limpieza y recolectores
+
+* Visualización de contenedores en mapa e identificación rápida de puntos críticos. 
+* Notificaciones en tiempo real cuando un contenedor alcanza su capacidad.
+* Botón para generar la ruta de recolección más eficiente hacia los contenedores llenos.
+* Panel con porcentaje de llenado y estado de conexión de los sensores.
+* Reporte de incidencias con foto (bloqueos, vandalismo, imposibilidad de recoger la basura) con evidencia fotográfica y comentarios. 
+* Tutorial inicial para nuevos trabajadores sobre el uso de la aplicación y manejo de rutas. 
