@@ -129,7 +129,30 @@
       <button class="btn btn-outline dash-small-btn">Ver en mapa</button>
     </article>
   </section>
+  
+    <section class="dash-section">
+    <div class="dash-section-header">
+      <span>🚨 Alertas de emergencia</span>
+      <!-- Botón solo para la demo / pruebas -->
+      <button id="btnSimularEmergencia" class="dash-link" type="button">
+        Simular emergencia
+      </button>
+    </div>
 
+    <!-- Card que se muestra SOLO cuando la alerta llega bien -->
+    <article id="emergencyAlertCard" class="dash-card hidden">
+      <p id="emergency-title" class="dash-route-title"></p>
+      <p id="emergency-meta" class="dash-route-meta"></p>
+      <button id="emergency-ack-btn"
+              class="btn btn-primary dash-small-btn"
+              type="button">
+        Marcar como atendida
+      </button>
+    </article>
+
+    <!-- Mensajes de estado: reintentos, error de red, etc. -->
+    <p id="emergencyStatus" class="dash-meta" style="margin-top:.4rem;"></p>
+  </section>
   <div class="dash-actions">
     <button class="btn btn-primary btn-block">Ver historial de jornada</button>
   </div>
@@ -140,6 +163,7 @@
   <script src="js/dashboard.js" defer></script>
 </body>
 </html>
+
 
 
 
