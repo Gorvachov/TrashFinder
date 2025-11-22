@@ -91,6 +91,125 @@ if (!me) {
     $('sum-tachos')   && ($('sum-tachos').textContent   = `${stats.tachosAtendidos}/${stats.tachosTotal}`);
     $('sum-alertas')  && ($('sum-alertas').textContent  = String(stats.alertas));
     $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);
+          // ===== HU-001: Recepción de alertas de emergencia (DEMO) =====
+  const MAX_REINTENTOS = 3;
+  const RETRY_MS = 2000;
+
+  const btnSimular     = document.getElementById('btnSimularEmergencia');
+  const cardEmergencia = document.getElementById('emergencyAlertCard');
+  const titleEmerg     = document.getElementById('emergency-title');
+  const metaEmerg      = document.getElementById('emergency-meta');
+  const statusEmerg    = document.getElementById('emergencyStatus');
+  const btnAckEmerg    = document.getElementById('emergency-ack-btn');
+
+  // Para controlar qué escenario se muestra en cada click
+  // 1er click  → escenario 1 (éxito directo)
+  // 2do click  → escenario 2 (error + reintento correcto)
+  // 3er click  → escenario 3 (falla tras 3 intentos)
+  let contadorClicksEmerg = 0;
+  let escenarioActual = 1;
+
+  const setEstadoEmerg = (msg) => {
+    if (statusEmerg) statusEmerg.textContent = msg;
+    log('[emergencia]', msg);
+  };
+
+  const mostrarAlertaEmergencia = (alerta) => {
+    if (!cardEmergencia || !titleEmerg || !metaEmerg) return;
+    titleEmerg.textContent = `Emergencia: ${alerta.tipo}`;
+    metaEmerg.textContent  = `Ubicación: ${alerta.ubicacion}`;
+    cardEmergencia.classList.remove('hidden');
+
+    // Notificación simple para que se note en la demo
+    alert(`🚨 EMERGENCIA DETECTADA\n\nTipo: ${alerta.tipo}\nUbicación: ${alerta.ubicacion}`);
+
+    // Opcional: notificación del navegador si está permitido
+    try {
+      if (Notification && Notification.permission === 'granted') {
+        new Notification(`Emergencia: ${alerta.tipo}`, {
+          body: `Ubicación: ${alerta.ubicacion}`,
+        });
+      }
+    } catch (e) {
+      // ignorar si no lo soporta
+    }
+  };
+
+  // Determina si hay "problema de red" según el escenario e intento
+  const hayProblemaDeRed = (intento) => {
+    switch (escenarioActual) {
+      case 1:
+        // Escenario 1: llega bien al primer intento
+        return false;
+      case 2:
+        // Escenario 2: primer intento falla, segundo funciona
+        return intento === 1;
+      case 3:
+        // Escenario 3: siempre falla (los 3 intentos)
+        return true;
+      default:
+        return false;
+    }
+  };
+
+  const enviarAlertaConReintentos = (alerta, intento = 1) => {
+    setEstadoEmerg(
+      `Detectando emergencia en la zona... (intento ${intento}/${MAX_REINTENTOS}, escenario ${escenarioActual})`
+    );
+
+    if (!hayProblemaDeRed(intento)) {
+      // Éxito
+      if (intento === 1) {
+        setEstadoEmerg(`✅ Alerta recibida correctamente en el primer intento (escenario ${escenarioActual}).`);
+      } else {
+        setEstadoEmerg(
+          `✅ Alerta recibida correctamente después de reintento ${intento} (escenario ${escenarioActual}).`
+        );
+      }
+      mostrarAlertaEmergencia(alerta);
+      return;
+    }
+
+    // Hay error de red
+    if (intento < MAX_REINTENTOS) {
+      setEstadoEmerg(
+        `⚠️ Error de red al enviar la alerta. Reintentando (${intento}/${MAX_REINTENTOS})... (escenario 2)`
+      );
+      setTimeout(() => enviarAlertaConReintentos(alerta, intento + 1), RETRY_MS);
+    } else {
+      // Después de 3 intentos falla definitivamente
+      setEstadoEmerg(
+        `❌ No se pudo enviar la alerta tras ${MAX_REINTENTOS} intentos (escenario 2). ` +
+        `El trabajador no recibe el mensaje.`
+      );
+      // No mostramos la card → el recolector nunca ve la alerta
+    }
+  };
+
+  // Botón de prueba para la demo
+  btnSimular?.addEventListener('click', () => {
+    contadorClicksEmerg += 1;
+
+    // 1 → esc1, 2 → esc2, 3 → esc3; luego se queda en 3
+    escenarioActual = Math.min(contadorClicksEmerg, 3);
+
+    const alertaDemo = {
+      tipo: 'Derrame de residuos peligrosos',
+      ubicacion: 'Av. La Marina 1234 – San Miguel',
+    };
+
+    // Ocultamos alerta anterior y limpiamos estado
+    cardEmergencia?.classList.add('hidden');
+    setEstadoEmerg(`Iniciando demostración del escenario ${escenarioActual}...`);
+
+    enviarAlertaConReintentos(alertaDemo, 1);
+  });
+
+  // Marcar como atendida
+  btnAckEmerg?.addEventListener('click', () => {
+    cardEmergencia?.classList.add('hidden');
+    setEstadoEmerg('✅ La alerta fue marcada como atendida por el recolector.');
+  });
   }
 
   
@@ -112,6 +231,7 @@ if (!me) {
     window.location.href = 'login.html';
   });
 }
+
 
 
 
