@@ -63,9 +63,25 @@
             <p class="dash-achievement-title">🏅Nuevo logro "Héroe del barrio"</p>
             <p class="dash-achievement-meta">🎖️Completaste 3 depósitos esta semana</p>
           </div>
-          <button class="btn btn-primary" onclick="compartirLogro()">
+
+<button class="btn btn-primary" onclick="mostrarModalCompartir()">
   📤 Compartir logro
 </button>
+
+<div id="modalCompartir" class="modal-compartir hidden">
+  <div class="modal-contenido">
+    <h3>Compartir logro</h3>
+    <p>¿Dónde deseas compartir?</p>
+
+    <div class="redes-icons">
+      <img src="img/instagram.png" alt="Instagram" onclick="seleccionarRed('Instagram')">
+      <img src="img/facebook.png" alt="Facebook" onclick="seleccionarRed('Facebook')">
+      <img src="img/whatsapp.png" alt="WhatsApp" onclick="seleccionarRed('WhatsApp')">
+    </div>
+
+    <button class="btn btn-secondary" onclick="cerrarModalCompartir()">Cerrar</button>
+  </div>
+</div>
 
 <p id="mensajeCompartir"></p>
 
@@ -186,6 +202,7 @@
   <script src="js/dashboard.js" defer></script>
 </body>
 </html>
+
 
 
 
