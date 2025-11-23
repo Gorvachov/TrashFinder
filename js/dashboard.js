@@ -55,7 +55,6 @@ if (!me) {
 
 if (!me.puntos || me.puntos <= 0) {
   me.puntos = 80;
-  localStorage.setItem('tf_users', JSON.stringify(users));
 }
 
 // Mostrar puntos en el panel
