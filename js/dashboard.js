@@ -55,7 +55,7 @@ if (!me) {
 
 // Si el usuario no tiene puntos definidos, asignamos por defecto
 if (!me.puntos || me.puntos <= 0) {
-  me.puntos = 80; // valor demo inicial
+  me.puntos = 150; // valor demo inicial
 
 // Mostrar puntos en el panel
 const puntosSpan = document.getElementById("puntos");
@@ -265,6 +265,7 @@ window.canjearBeneficio = function () {
     window.location.href = 'login.html';
   });
 }
+
 
 
 
