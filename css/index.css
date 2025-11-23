@@ -5,8 +5,8 @@
 :root{
   --green-primary:#16A34A;
   --green-light:#7ED321;
-  --orange:#FF8C42;
-  --orange-light:#FFE5D4;
+  --orange:#F57C00;
+  --orange-light:#f5c800;
   --dark:#1a1a1a;
   --gray:#666;
   --light-gray:#f5f5f5;
@@ -415,6 +415,7 @@ body.lock { overflow: hidden; }
   top: 80%;
   left: 80%;
 }
+
 
 
 
