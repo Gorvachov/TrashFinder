@@ -383,6 +383,36 @@ body.lock { overflow: hidden; }
   .dash-progress{ width:64px; height:64px; border-width:5px; }
   .dash-progress-bar{ width:640px; height:64px; border-width:5px; }
 }
+/* Para el mapa de contenedores */
+.map-container {
+  position: relative;
+  display: inline-block;
+}
+
+.map-container img {
+  display: block;
+}
+
+.icon { /*Quiero que los contenedores se sobrepongan sobre el mapa, ojo con esto*/
+  position: absolute;
+  width: 40px;      /* cambia tamaño del icono */
+  height: auto;
+}
+
+.container1 {
+  top: 40%;   /* mueve vertical */
+  left: 65%;  /* mueve horizontal */
+}
+
+.container2 {
+  top: 70%;
+  left: 30%;
+}
+
+.container3 {
+  top: 80%;
+  left: 80%;
+}
 
 
 
