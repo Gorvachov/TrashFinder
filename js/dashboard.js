@@ -96,7 +96,20 @@ window.canjearBeneficio = function () {
     $('nivel')  && ($('nivel').textContent  = String(stats.nivel));
     $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);*/
   }
+// HU-017 Modal visual de compartir
 
+function mostrarModalCompartir() {
+  document.getElementById("modalCompartir").classList.remove("hidden");
+}
+
+function cerrarModalCompartir() {
+  document.getElementById("modalCompartir").classList.add("hidden");
+}
+
+function seleccionarRed(red) {
+  alert("✅ Seleccionaste compartir en " + red);
+  cerrarModalCompartir();
+}
 // --- 4) Vista RECOLECTOR: saludo + fecha + resumen ---
   if (isRecolector && vRecolector) {
     const nombre = me.nombres || me.username || 'Recolector';
@@ -300,6 +313,7 @@ function compartirLogro() {
     mensaje.style.color = "orange";
   }
 }
+
 
 
 
