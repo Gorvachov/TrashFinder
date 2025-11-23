@@ -398,6 +398,11 @@ body.lock { overflow: hidden; }
     animation: FadeIn 1s ease forwards;
     box-shadow: 0 6px 20px rgba(0,0,0, 0.4);
 }
+
+#contenedorFoto {
+      margin-top: 15px;
+      display: block; /* oculto al inicio */
+    }
 /*Hasta aquí son las configuraciones para el mapa de contenedores*/
 .tacho-estado {
   margin: 20px;
@@ -420,6 +425,7 @@ body.lock { overflow: hidden; }
   padding: 8px;
   border-radius: 6px;
 }
+
 
 
 
