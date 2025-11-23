@@ -54,7 +54,7 @@ if (!me) {
 // ===============================
 
 if (typeof me.puntos === 'undefined') {
-  me.puntos = 80; // valor por defecto para demo
+  me.puntos = 150; // valor por defecto para demo
 }
 
 // Mostrar puntos en pantalla si existe el span
@@ -264,6 +264,7 @@ window.canjearBeneficio = function () {
     window.location.href = 'login.html';
   });
 }
+
 
 
 
