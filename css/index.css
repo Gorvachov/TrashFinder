@@ -385,6 +385,49 @@ body.lock { overflow: hidden; }
   .dash-progress{ width:64px; height:64px; border-width:5px; }
   .dash-progress-bar{ width:640px; height:64px; border-width:5px; }
 }
+
+/* ==== HU-60: Panel de alertas del recolector ==== */
+
+.alert-map{
+  margin-top:.5rem;
+  margin-bottom:.75rem;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow-1);
+}
+
+.alert-map-placeholder{
+  width:100%;
+  min-height:200px;
+  background:linear-gradient(135deg,#e3f2fd,#f1f8e9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.9rem;
+  color:var(--gray);
+}
+
+/* Tarjetas de alertas con borde superior de color */
+.alert-card{
+  margin-top:.6rem;
+  margin-bottom:.75rem;
+  border-top:4px solid #EB5757; /* rojo = crítica */
+}
+
+.alert-card-warning{ border-top-color:#F2C94C; }  /* amarillo = media */
+.alert-card-low{ border-top-color:var(--green-light); } /* verde = baja */
+
+.alert-card-actions{
+  margin-top:.55rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+
+.alert-card-highlight{
+  box-shadow:0 0 0 3px rgba(22,163,74,.35), var(--shadow-2);
+}
+
 /* A partir de aquí son las configuraciones para el mapa de contenedores */
 .map-container {
   position: relative;
@@ -425,6 +468,7 @@ body.lock { overflow: hidden; }
   padding: 8px;
   border-radius: 6px;
 }
+
 
 
 
