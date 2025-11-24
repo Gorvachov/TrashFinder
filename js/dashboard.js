@@ -96,7 +96,7 @@ window.canjearBeneficio = function () {
     $('nivel')  && ($('nivel').textContent  = String(stats.nivel));
     $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);*/
   }
-  // --- 4) Vista RECOLECTOR: saludo + fecha + resumen + alertas ---
+    // --- 4) Vista RECOLECTOR: saludo + fecha + resumen + alertas ---
   if (isRecolector && vRecolector) {
     const nombre = me.nombres || me.username || 'Recolector';
 
@@ -125,21 +125,6 @@ window.canjearBeneficio = function () {
     $('sum-progreso') && ($('sum-progreso').textContent = `${pct}%`);
 
     // ==== HU-60: gestión de alertas ====
-    const vRecolectorAlertas = document.getElementById('view-recolector-alertas');
-
-    const summarySection  = document.getElementById('alerts-summary-section');
-    const summaryList     = document.getElementById('alerts-summary-list');
-    const summaryInfo     = document.getElementById('alerts-summary-info');
-    const btnVerTodasDash = document.getElementById('btnVerTodasAlertasDashboard');
-
-    const listaAlertasEl    = document.getElementById('alertas-lista');
-    const contadorAlertasEl = document.getElementById('count-alertas-activas');
-    const mapaLabelEl       = document.getElementById('alertas-mapa-label');
-    const mapPlaceholderEl  = document.getElementById('alert-map-placeholder');
-    const historialEl       = document.getElementById('historial-alertas-resueltas');
-    const btnVolverPanel    = document.getElementById('btnVolverPanelRecolector');
-
-    // Datos de ejemplo para el prototipo
     const alertasIniciales = [
       { id: 'AL-01', tacho: '#03 Callao Sur',       estado: 'Dañado',            ubicacion: 'Callao Sur',       nivel: 'alta'   },
       { id: 'AL-02', tacho: '#03 Callao Sur',       estado: 'Sensor dañado',     ubicacion: 'Callao Sur',       nivel: 'alta'   },
@@ -148,6 +133,19 @@ window.canjearBeneficio = function () {
 
     const alertasActivas = [...alertasIniciales];
     const historialAlertasResueltas = [];
+
+    const summarySection  = document.getElementById('alerts-summary-section');
+    const summaryList     = document.getElementById('alerts-summary-list');
+    const summaryInfo     = document.getElementById('alerts-summary-info');
+    const btnVerTodasDash = document.getElementById('btnVerTodasAlertasDashboard');
+
+    const vRecolectorAlertas = document.getElementById('view-recolector-alertas');
+    const listaAlertasEl     = document.getElementById('alertas-lista');
+    const contadorAlertasEl  = document.getElementById('count-alertas-activas');
+    const mapaLabelEl        = document.getElementById('alertas-mapa-label');
+    const mapPlaceholderEl   = document.getElementById('alert-map-placeholder');
+    const historialEl        = document.getElementById('historial-alertas-resueltas');
+    const btnVolverPanel     = document.getElementById('btnVolverPanelRecolector');
 
     function mostrarVistaPanelRecolector() {
       vRecolector.classList.remove('hidden');
@@ -161,7 +159,6 @@ window.canjearBeneficio = function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
       if (alertaIdSeleccionada) {
-        // Esperamos al siguiente frame para asegurarnos de que la lista ya está pintada
         requestAnimationFrame(() => {
           resaltarAlertaEnLista(alertaIdSeleccionada);
         });
@@ -308,16 +305,14 @@ window.canjearBeneficio = function () {
 
     // Eventos de navegación entre vistas
     btnVerTodasDash?.addEventListener('click', () => {
-      // Desde el resumen → pantalla completa de alertas
       mostrarVistaAlertas();
     });
 
     btnVolverPanel?.addEventListener('click', () => {
-      // Botón ← Volver al panel
       mostrarVistaPanelRecolector();
     });
 
-    // Inicialización de vistas de alertas
+    // Inicializar
     renderAlertasResumen();
     renderAlertasCompleta();
     renderHistorial();
@@ -463,6 +458,7 @@ window.canjearBeneficio = function () {
     window.location.href = 'login.html';
   });
 }
+
 
 
 
