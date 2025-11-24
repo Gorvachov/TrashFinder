@@ -165,8 +165,10 @@ window.canjearBeneficio = function () {
     const contadorAlertasEl  = document.getElementById('count-alertas-activas');
     const mapaLabelEl        = document.getElementById('alertas-mapa-label');
     const mapPlaceholderEl   = document.getElementById('alert-map-placeholder');
+    const mapImageEl         = document.getElementById('alert-map-img'); // arriba, una sola vez
     const historialEl        = document.getElementById('historial-alertas-resueltas');
     const btnVolverPanel     = document.getElementById('btnVolverPanelRecolector');
+    
 
     function mostrarVistaPanelRecolector() {
       vRecolector.classList.remove('hidden');
@@ -265,7 +267,6 @@ window.canjearBeneficio = function () {
           // Ya estamos en la pantalla de alertas → solo resalta
           resaltarAlertaEnLista(alerta.id);
         }
-        const mapImageEl = document.getElementById('alert-map-img'); // arriba, una sola vez
       });
 
       if (!modoResumen) {
@@ -482,6 +483,7 @@ window.canjearBeneficio = function () {
     localStorage.removeItem('tf_session');
     window.location.href = 'login.html';
   });
+
 
 
 
