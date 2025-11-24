@@ -457,7 +457,7 @@ window.canjearBeneficio = function () {
     localStorage.removeItem('tf_session');
     window.location.href = 'login.html';
   });
-}
+
 
 
 
