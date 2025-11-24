@@ -47,7 +47,6 @@
 
       <!-- Vínculo del dashboard con el mapa de contenedores-->
         <div class="dash-actions">
-           <a class="link" href = "map.html"> 
           <button class="btn btn-primary btn-block">📍 Encontrar tacho cercano</button>
            </a>
         </div>
@@ -135,6 +134,21 @@
       <button class="btn btn-outline dash-small-btn">Ver detalles</button>
     </article>
   </section>
+  
+  <section id="alerts-summary-section" class="dash-section">
+  <div class="dash-section-header">
+    <span>🚨 Alertas activas</span>
+    <button id="btnVerTodasAlertasDashboard" class="dash-link" type="button">
+      Ver todo →
+    </button>
+  </div>
+  <p id="alerts-summary-info" class="dash-meta">
+    Mostrando un resumen de las alertas activas.
+  </p>
+  <div id="alerts-summary-list">
+    <!-- Aquí el JS pondrá hasta 2 alertas -->
+  </div>
+</section>
 
   <!-- Alertas urgentes -->
   <section class="dash-section">
@@ -148,7 +162,21 @@
       <button class="btn btn-outline dash-small-btn">Ver en mapa</button>
     </article>
   </section>
-  
+
+  <section class="dash-section">
+  <div class="dash-section-header">
+    <span>Historial de jornada</span>
+  </div>
+  <article class="dash-card">
+    <p id="historial-alertas-resueltas" class="dash-route-meta">
+      No hay alertas resueltas hoy.
+    </p>
+    <button class="btn btn-outline dash-small-btn" type="button">
+      Ver detalle
+    </button>
+  </article>
+</section>
+
     <section class="dash-section">
     <div class="dash-section-header">
       <span>🚨 Alertas de emergencia</span>
@@ -176,12 +204,75 @@
     <button class="btn btn-primary btn-block">Ver historial de jornada</button>
   </div>
 </section>
+
+  <!-- Vista completa de alertas para el recolector -->
+<section id="view-recolector-alertas" class="dash-view hidden">
+  <header class="dash-header">
+    <div class="dash-logo-row">
+      <button id="btnVolverPanelRecolector"
+              class="btn btn-outline dash-small-btn"
+              type="button">
+        ← Volver al panel
+      </button>
+    </div>
+    <h1 class="dash-title">Alertas</h1>
+    <p class="dash-meta">
+      Visualiza y gestiona todas las alertas activas de los contenedores.
+    </p>
+  </header>
+
+  <!-- Mapa de alertas -->
+  <section class="dash-section">
+    <div class="dash-section-header">
+      <span>Mapa de alertas</span>
+    </div>
+    <div class="alert-map">
+  <div class="alert-map-placeholder">
+    <img id="alert-map-img"
+         src="img/map-general.png"
+         alt="Mapa de alertas"
+         class="alert-map-img">
+  </div>
+  <p id="alertas-mapa-label" class="dash-meta" style="margin-top:.4rem;">
+    Selecciona “Ver en mapa” en una alerta para centrar el contenedor.
+  </p>
+</div>
+
+  </section>
+
+  <!-- Lista completa de alertas -->
+  <section class="dash-section">
+    <div class="dash-section-header">
+      <span>Lista de alertas activas</span>
+      <span id="count-alertas-activas" class="dash-link"></span>
+    </div>
+    <div id="alertas-lista">
+      <!-- Se rellenará con JS -->
+    </div>
+  </section>
+
+  <!-- Historial de jornada (para HU-60) -->
+  <section class="dash-section">
+    <div class="dash-section-header">
+      <span>Historial de jornada</span>
+    </div>
+    <article class="dash-card">
+      <p id="historial-alertas-resueltas" class="dash-route-meta">
+        No hay alertas resueltas hoy.
+      </p>
+      <button class="btn btn-outline dash-small-btn" type="button">
+        Ver detalle
+      </button>
+    </article>
+  </section>
+</section>
   
   </main>
 
   <script src="js/dashboard.js" defer></script>
 </body>
 </html>
+
 
 
 
