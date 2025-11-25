@@ -1,10 +1,10 @@
 window.onload = () => {
-    // ✅ Datos de perfil guardados
+    // Datos de perfil guardados
     const n = localStorage.getItem("perfilNombre");
     const e = localStorage.getItem("perfilEmail");
     const dark = localStorage.getItem("darkMode");
 
-    // ✅ Datos de sesión principal (como tu dashboard)
+    // Datos de sesión principal (como tu dashboard)
     const users = JSON.parse(localStorage.getItem("tf_users") || "[]");
     const sessionEmail = localStorage.getItem("tf_session");
     const me = users.find(u => u.email === sessionEmail);
@@ -20,7 +20,7 @@ window.onload = () => {
     if (nameEl)  nameEl.textContent  = nombreFinal;
     if (emailEl) emailEl.textContent = emailFinal;
 
-    // ✅ Aplicar modo oscuro guardado
+    // Aplicar modo oscuro guardado
     if (dark === "true") {
         document.body.classList.add("dark-mode");
         const toggle = document.getElementById("darkModeToggle");
@@ -58,3 +58,4 @@ function cerrarSesion() {
     // opcional: redireccionar
     window.location.href = "login.html";
 }
+
