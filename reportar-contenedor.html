@@ -37,6 +37,17 @@
             <option value="otro">Otro</option>
           </select>
         </div>
+        <!-- Comentario -->
+        <div class="form-group">
+          <label for="comentario">💬 Comentario *</label>
+          <textarea 
+            id="comentario" 
+            rows="4" 
+            placeholder="Agrega una descripción adicional del daño que reportaste..."
+            required
+            maxlength="300"></textarea>
+          <span class="char-counter"><span id="charCount">0</span>/300</span>
+        </div>
              <!-- Contenedor del input de foto -->
             <!-- Foto -->
         <div class="form-group">
@@ -78,6 +89,6 @@
             <!--Gracias, tu reporte ha sido enviado a la municipalidad.-->
         </section>
       </main>
-      <!--<script src="js/reportar-contenedor.js" defer></script>-->
+     <script src="js/reportar-contenedor.js" defer></script>
 </body>
 </html>
