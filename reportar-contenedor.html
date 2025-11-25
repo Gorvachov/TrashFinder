@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportar contenedor - Trash Finder</title>
+  <link rel="stylesheet" href = "css/index.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-content">
+      <div class="logo">
+        <img src="img/logo.png" width="36" height="36" alt="Logo" />
+        <span class="logo-text">TRASH FINDER</span>
+      </div>
+      <div class="nav-buttons">
+        <a href="dashboard.html" class="btn btn-secondary">← Volver al dashboard</a>
+      </div>
+    </div>
+  </header>
+          
+  <main class="dashboard container">
+  <header>
+     <h1>📸 Reportar contenedor</h1>
+       <p>Reporta contenedores dañados o vandalizados</p>
+         </header>
+      
+    <section class = "dash-reportes">
+      <form id="formContenedor" class ="container-form">
+            <!-- Categoría -->
+        <div class="form-group">
+          <label for="categoria">Marque el problema identificado *</label>
+          <select id="categoria" required>
+            <option value="">Selecciona un tipo</option>
+            <option value="tacho-danado">Daño fisico</option>
+            <option value="vandalismo">Vandalismo</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+             <!-- Contenedor del input de foto -->
+            <!-- Foto -->
+        <div class="form-group">
+          <label for="foto-contenedor">📷 Foto del contenedor *</label>
+          <div class="photo-upload-area" id="photoUploadArea">
+            <input type="file" id="foto-contenedor" accept="image/*" capture="environment" required hidden>
+            <div class="photo-preview" id="photoPreview">
+              <span class="upload-icon">📸</span>
+              <p>Toca para tomar foto o seleccionar</p>
+            </div>
+            <img id="previewImage" class="preview-img hidden" alt="Vista previa">
+          </div>
+        </div>
+
+        <!-- Ubicación (opcional - se puede obtener automáticamente) -->
+        <div class="form-group">
+          <label>📍 Ubicación</label>
+          <div class="location-info">
+            <span id="locationText">Obteniendo ubicación...</span>
+            <button type="button" id="btnGetLocation" class="btn btn-outline">Actualizar</button>
+          </div>
+          <input type="hidden" id="latitud">
+          <input type="hidden" id="longitud">
+        </div>
+
+        <!-- Estado de envío -->
+        <div id="statusMessage" class="status-message hidden"></div>
+
+        <!-- Botones -->
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="window.history.back()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary" id="btnEnviar">
+            📤 Enviar reporte
+          </button>
+        </div>
+        </form>
+            <!--Gracias, tu reporte ha sido enviado a la municipalidad.-->
+        </section>
+      </main>
+      <!--<script src="js/reportar-contenedor.js" defer></script>-->
+</body>
+</html>
