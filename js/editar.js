@@ -1,3 +1,11 @@
+// ===== Helpers =====
+const loadUsers = () => JSON.parse(localStorage.getItem("tf_users") || "[]");
+const saveUsers = (users) => localStorage.setItem("tf_users", JSON.stringify(users));
+const setSession = (email) => localStorage.setItem("tf_session", email);
+
+const byId = (id) => document.getElementById(id);
+
+// ===== Cargar datos previos (si el usuario volvió al formulario) =====
 window.onload = () => {
     const campos = [
         "r-username",
@@ -9,50 +17,64 @@ window.onload = () => {
     ];
 
     campos.forEach(id => {
-        const valor = localStorage.getItem(id);
-        if (valor) document.getElementById(id).value = valor;
+        const valor = localStorage.getItem("draft_" + id);
+        if (valor) byId(id).value = valor;
     });
 };
 
-function guardarDatos() {
-    const requeridos = ["r-username", "r-nombres", "r-apepat", "r-email"];
-    const mensajeError = document.getElementById("mensajeError");
+// ===== Guardar datos mientras escribe (modo borrador) =====
+["r-username","r-nombres","r-apepat","r-apemat","r-telefono","r-email"].forEach(id => {
+    const el = byId(id);
+    el?.addEventListener("input", () => {
+        localStorage.setItem("draft_" + id, el.value);
+    });
+});
 
-    // Limpiar mensaje previo
+// ===== Registrar usuario =====
+function guardarDatos() {
+    const mensajeError = byId("mensajeError");
     mensajeError.textContent = "";
 
-    // Validar requeridos
-    for (let id of requeridos) {
-        if (document.getElementById(id).value.trim() === "") {
-            mensajeError.textContent = "Por favor completa todos los campos obligatorios.";
-            return;
-        }
+    const user = {
+        id: Date.now(),
+        username: byId("r-username").value.trim(),
+        nombres: byId("r-nombres").value.trim(),
+        apepat: byId("r-apepat").value.trim(),
+        apemat: byId("r-apemat").value.trim(),
+        telefono: byId("r-telefono").value.trim(),
+        email: byId("r-email").value.trim().toLowerCase()
+    };
+
+    if (!user.username || !user.nombres || !user.apepat || !user.email) {
+        mensajeError.textContent = "Por favor completa todos los campos obligatorios.";
+        return;
     }
 
-    // Guardar todos
-    [
-        "r-username",
-        "r-nombres",
-        "r-apepat",
-        "r-apemat",
-        "r-telefono",
-        "r-email"
-    ].forEach(id => {
-        localStorage.setItem(id, document.getElementById(id).value);
+    const users = loadUsers();
+
+    if (users.some(u => u.email === user.email)) {
+        mensajeError.textContent = "Ya existe una cuenta con este correo.";
+        return;
+    }
+
+    users.push(user);
+    saveUsers(users);
+    setSession(user.email);
+
+    // Guardar datos de perfil para otras vistas
+    localStorage.setItem("perfilNombre", `${user.nombres} ${user.apepat}`);
+    localStorage.setItem("perfilEmail", user.email);
+
+    // Limpiar borradores
+    ["r-username","r-nombres","r-apepat","r-apemat","r-telefono","r-email"].forEach(id => {
+        localStorage.removeItem("draft_" + id);
     });
 
-    // Datos extra
-    localStorage.setItem(
-        "perfilNombre",
-        `${document.getElementById("r-nombres").value} ${document.getElementById("r-apepat").value}`
-    );
-
-    localStorage.setItem("perfilEmail", document.getElementById("r-email").value);
-
     // Redirigir
-    window.location.href = "perfil.html";
+    window.location.href = "dashboard.html";
 }
 
+// ===== Dark mode global =====
 document.addEventListener("DOMContentLoaded", () => {
     const dark = localStorage.getItem("darkMode");
     if (dark === "true") {
@@ -60,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// ===== Volver =====
 function volverPerfil() {
     window.location.href = "perfil.html";
 }
-
