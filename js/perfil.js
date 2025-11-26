@@ -23,10 +23,6 @@ window.onload = () => {
     if (nameEl)  nameEl.textContent  = nombreCompleto;
     if (emailEl) emailEl.textContent = correo;
 
-    function volverPerfil() {
-    window.history.back();
-    }
-
     // Aplicar modo oscuro guardado
     const dark = localStorage.getItem("darkMode");
     const toggle = document.getElementById("darkModeToggle");
@@ -58,6 +54,10 @@ toggle?.addEventListener("change", () => {
     actualizarIconos();
 });
 
+function volverPerfil() {
+    window.history.back();
+    }
+
 // Cerrar sesión
 function cerrarSesion() {
     alert("Sesión cerrada");
@@ -68,4 +68,5 @@ function cerrarSesion() {
     // volver a login
     window.location.href = "login.html";
 }
+
 
