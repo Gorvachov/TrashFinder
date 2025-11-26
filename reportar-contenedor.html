@@ -32,7 +32,7 @@
           <label for="categoria">Marque el problema identificado *</label>
           <select id="categoria" required>
             <option value="">Selecciona un tipo</option>
-            <option value="tacho-danado">Daño fisico</option>
+            <option value="dano-fisico">Daño fisico</option>
             <option value="vandalismo">Vandalismo</option>
             <option value="otro">Otro</option>
           </select>
@@ -86,9 +86,20 @@
           </button>
         </div>
         </form>
-            <!--Gracias, tu reporte ha sido enviado a la municipalidad.-->
         </section>
+
+     <!-- Lista de reportes enviados -->
+    <section class="dash-section">
+      <div class="dash-section-header">
+        <span>📋 Mis reportes recientes</span>
+      </div>
+      <div id="reportList" class="report-list">
+        <!-- Se llenarán dinámicamente con JS -->
+        <p class="dash-meta">No hay reportes de contenedores aún.</p>
+      </div>
+    </section>
       </main>
      <script src="js/reportar-contenedor.js" defer></script>
 </body>
 </html>
+
