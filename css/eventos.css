@@ -1,7 +1,29 @@
+:root {
+    --bg: #F6F6F6;
+    --card: #FAFAFA;
+    --text: #000000;
+    --subtext: #4F4F4F;
+    --green: #16A34A;
+    --blue: #2F80ED;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    transition: background-color .35s ease, color .35s ease;
+}
+
+body.dark-mode {
+    --bg: #0F0F0F;
+    --card: #1A1A1A;
+    --text: #FAFAFA;
+    --subtext: #BDBDBD;
+}
 .page-title {
   margin-top: 40px;
   font-size: 32px;
-  color: #0b8f45;
+  color: var(--green);
 }
 
 .eventos-list {
@@ -11,19 +33,20 @@
 }
 
 .evento-card {
-  background: white;
+  background: var(--card);
   padding: 18px;
   border-radius: 10px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.09);
+  color: var(--text);
 }
 
 .evento-card h3 {
   margin-top: 0;
-  color: #0b8f45;
+  color: var(--green);
 }
 
 .evento-card p {
-  color: #555;
+  color: var(--subtext);
 }
 
 .btn-evento {
@@ -32,57 +55,20 @@
   border-radius: 8px;
   cursor: pointer;
   color: white;
-  background: #0b8f45;
+  background: var(--green);
   font-weight: bold;
 }
 
 .btn-evento.secondary {
-  background: #444;
+  background: var(--subtext);
 }
 
 .estado-inscrito {
   display: inline-block;
   margin-top: 10px;
-  background: #def6e3;
-  color: #0b8f45;
+  background: rgba(22, 163, 74, 0.15); /* verde suave */
+  color: var(--green);
   padding: 5px 10px;
   border-radius: 6px;
   font-size: 14px;
-}
-
-/* ------------------- DARK MODE – EVENTOS ------------------- */
-
-body.dark-mode .page-title {
-  color: #7ed321;
-}
-
-body.dark-mode .eventos-list {
-  background: transparent;
-}
-
-body.dark-mode .evento-card {
-  background: #1d1d1d;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-mode .evento-card h3 {
-  color: #7ed321;
-}
-
-body.dark-mode .evento-card p {
-  color: #cccccc;
-}
-
-body.dark-mode .btn-evento {
-  background: #16a34a;
-  color: white;
-}
-
-body.dark-mode .btn-evento.secondary {
-  background: #444;
-}
-
-body.dark-mode .estado-inscrito {
-  background: #1f3d2b;
-  color: #7ed321;
 }
