@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar perfil</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/editar.css">
+</head>
+<body>
+
+    <div class="user-container">
+
+        <button class="back-btn" onclick="volverPerfil()">← Volver</button>
+
+        <h1>Editar perfil</h1>
+        <p class="subtitle">Actualiza tus datos personales</p>
+
+        <form class="form-card" onsubmit="guardarDatos(); return false;">
+
+            <label class="field">
+                <span>Usuario</span>
+                <input id="r-username" type="text" autocomplete="username" required>
+            </label>
+
+            <label class="field">
+                <span>Nombre(s)</span>
+                <input id="r-nombres" type="text" required>
+            </label>
+
+            <label class="field">
+                <span>Apellido Paterno</span>
+                <input id="r-apepat" type="text" required>
+            </label>
+
+            <label class="field">
+                <span>Apellido Materno</span>
+                <input id="r-apemat" type="text">
+            </label>
+
+            <label class="field">
+                <span>Número de teléfono</span>
+                <input id="r-telefono" type="tel" autocomplete="tel">
+            </label>
+
+            <label class="field">
+                <span>Correo electrónico</span>
+                <input id="r-email" type="email" autocomplete="email" required>
+            </label>
+
+            <label class="field">
+                <span>Contraseña</span>
+                <input id="r-pass" type="password" autocomplete="new-password" required>
+            </label>
+
+            <button type="submit" class="save-btn">Guardar cambios</button>
+
+            <p id="mensajeError" class="error-text"></p>
+
+        </form>
+
+    </div>
+
+    <script src="js/editar.js"></script>
+</body>
+</html>
