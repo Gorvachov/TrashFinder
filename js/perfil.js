@@ -1,36 +1,42 @@
 window.onload = () => {
-    // Datos de perfil guardados
-    const n = localStorage.getItem("perfilNombre");
-    const e = localStorage.getItem("perfilEmail");
-    const dark = localStorage.getItem("darkMode");
 
-    // Datos de sesión principal (como tu dashboard)
+    // Cargar datos de sesión
     const users = JSON.parse(localStorage.getItem("tf_users") || "[]");
     const sessionEmail = localStorage.getItem("tf_session");
     const me = users.find(u => u.email === sessionEmail);
 
-    // Prioridad: datos de sesión > datos de perfil
-    const nombreFinal = (me?.nombres || me?.username || n || "Usuario");
-    const emailFinal  = (me?.email || e || "correo@no-registrado.com");
+    // Construir nombre completo
+    let nombreCompleto = "Usuario";
+    let correo = "correo@no-registrado.com";
 
-    // Pintar en el HTML
+    if (me) {
+        const nombre = me.nombres || "";
+        const apellido = me.apepat || "";
+        nombreCompleto = `${nombre} ${apellido}`.trim();
+        correo = me.email || correo;
+    }
+
+    // Pintar datos en HTML
     const nameEl  = document.querySelector(".user-name");
     const emailEl = document.querySelector(".user-email");
 
-    if (nameEl)  nameEl.textContent  = nombreFinal;
-    if (emailEl) emailEl.textContent = emailFinal;
+    if (nameEl)  nameEl.textContent  = nombreCompleto;
+    if (emailEl) emailEl.textContent = correo;
 
     // Aplicar modo oscuro guardado
+    const dark = localStorage.getItem("darkMode");
+    const toggle = document.getElementById("darkModeToggle");
+
     if (dark === "true") {
         document.body.classList.add("dark-mode");
-        const toggle = document.getElementById("darkModeToggle");
         if (toggle) toggle.checked = true;
     }
 
     actualizarIconos();
 };
 
-// ===== Modo oscuro =====
+
+// Modo oscuro + cambio de icono
 const toggle = document.getElementById("darkModeToggle");
 
 function actualizarIconos() {
@@ -48,14 +54,13 @@ toggle?.addEventListener("change", () => {
     actualizarIconos();
 });
 
-// ===== Cerrar sesión =====
+// Cerrar sesión
 function cerrarSesion() {
+    alert("Sesión cerrada");
 
     // borrar sesión real
     localStorage.removeItem("tf_session");
 
-    // opcional: redireccionar
+    // volver a login
     window.location.href = "login.html";
 }
-
-
