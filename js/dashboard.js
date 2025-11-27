@@ -166,9 +166,18 @@ window.canjearBeneficio = function () {
     const mapaLabelEl        = document.getElementById('alertas-mapa-label');
     const mapPlaceholderEl   = document.getElementById('alert-map-placeholder');
     const mapImageEl         = document.getElementById('alert-map-img'); // arriba, una sola vez
-    const historialEl        = document.getElementById('historial-alertas-resueltas');
     const btnVolverPanel     = document.getElementById('btnVolverPanelRecolector');
-    const historialListaEl   = document.getElementById('historial-alertas-list');    
+    // Dos parrafos: panel principal y vista alertas
+const historialEls = [
+  document.getElementById('historial-alertas-resueltas-main'),
+  document.getElementById('historial-alertas-resueltas-alertas'),
+].filter(Boolean);
+
+// Dos listas: panel principal y vista alertas
+const historialListEls = [
+  document.getElementById('historial-alertas-list-main'),
+  document.getElementById('historial-alertas-list-alertas'),
+].filter(Boolean);
 
     function mostrarVistaPanelRecolector() {
       vRecolector.classList.remove('hidden');
@@ -197,33 +206,47 @@ window.canjearBeneficio = function () {
           : `${n} alerta${n !== 1 ? 's' : ''} activa${n !== 1 ? 's' : ''}`;
     }
 
-    function renderHistorial() {
-  if (!historialEl || !historialListaEl) return;
+function renderHistorial() {
+  if (!historialEls.length || !historialListEls.length) return;
 
-  // limpiar la lista
-  historialListaEl.innerHTML = '';
+  // Limpiar todas las listas
+  historialListEls.forEach(ul => {
+    ul.innerHTML = '';
+  });
 
   if (historialAlertasResueltas.length === 0) {
-    historialEl.textContent = 'No hay alertas resueltas hoy.';
+    // Mensaje cuando aún no hay nada resuelto
+    historialEls.forEach(p => {
+      p.textContent = 'No hay alertas resueltas hoy.';
+    });
     return;
   }
 
   const n   = historialAlertasResueltas.length;
-  const ult = historialAlertasResueltas[historialAlertasResueltas.length - 1];
-  historialEl.textContent =
-    `Hoy has resuelto ${n} alerta${n !== 1 ? 's' : ''}. ` +
-    `Última: Tacho ${ult.tacho} (${ult.estado}).`;
+  const ult = historialAlertasResueltas[n - 1];
 
+  // Texto resumen en ambos lugares
+  historialEls.forEach(p => {
+    p.textContent =
+      `Hoy has resuelto ${n} alerta${n !== 1 ? 's' : ''}. ` +
+      `Última: Tacho ${ult.tacho} (${ult.estado}).`;
+  });
+
+  // Lista detallada en ambas listas
   historialAlertasResueltas.forEach(item => {
-    const li = document.createElement('li');
     const hora = new Date(item.resueltaEn).toLocaleTimeString('es-PE', {
       hour: '2-digit',
       minute: '2-digit'
     });
-    li.textContent = `${hora} – Tacho ${item.tacho} (${item.estado})`;
-    historialListaEl.appendChild(li);
+
+    historialListEls.forEach(ul => {
+      const li = document.createElement('li');
+      li.textContent = `${hora} – Tacho ${item.tacho} (${item.estado})`;
+      ul.appendChild(li);
+    });
   });
 }
+
 
 
     function resaltarAlertaEnLista(idAlerta) {
@@ -499,6 +522,7 @@ window.canjearBeneficio = function () {
     localStorage.removeItem('tf_session');
     window.location.href = 'login.html';
   });
+
 
 
 
