@@ -168,7 +168,7 @@ window.canjearBeneficio = function () {
     const mapImageEl         = document.getElementById('alert-map-img'); // arriba, una sola vez
     const historialEl        = document.getElementById('historial-alertas-resueltas');
     const btnVolverPanel     = document.getElementById('btnVolverPanelRecolector');
-    
+    const historialListaEl   = document.getElementById('historial-alertas-list');    
 
     function mostrarVistaPanelRecolector() {
       vRecolector.classList.remove('hidden');
@@ -198,17 +198,33 @@ window.canjearBeneficio = function () {
     }
 
     function renderHistorial() {
-      if (!historialEl) return;
-      if (historialAlertasResueltas.length === 0) {
-        historialEl.textContent = 'No hay alertas resueltas hoy.';
-      } else {
-        const n   = historialAlertasResueltas.length;
-        const ult = historialAlertasResueltas[historialAlertasResueltas.length - 1];
-        historialEl.textContent =
-          `Hoy has resuelto ${n} alerta${n !== 1 ? 's' : ''}. ` +
-          `Última: Tacho ${ult.tacho} (${ult.estado}).`;
-      }
-    }
+  if (!historialEl || !historialListaEl) return;
+
+  // limpiar la lista
+  historialListaEl.innerHTML = '';
+
+  if (historialAlertasResueltas.length === 0) {
+    historialEl.textContent = 'No hay alertas resueltas hoy.';
+    return;
+  }
+
+  const n   = historialAlertasResueltas.length;
+  const ult = historialAlertasResueltas[historialAlertasResueltas.length - 1];
+  historialEl.textContent =
+    `Hoy has resuelto ${n} alerta${n !== 1 ? 's' : ''}. ` +
+    `Última: Tacho ${ult.tacho} (${ult.estado}).`;
+
+  historialAlertasResueltas.forEach(item => {
+    const li = document.createElement('li');
+    const hora = new Date(item.resueltaEn).toLocaleTimeString('es-PE', {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    li.textContent = `${hora} – Tacho ${item.tacho} (${item.estado})`;
+    historialListaEl.appendChild(li);
+  });
+}
+
 
     function resaltarAlertaEnLista(idAlerta) {
       if (!listaAlertasEl) return;
@@ -483,6 +499,7 @@ window.canjearBeneficio = function () {
     localStorage.removeItem('tf_session');
     window.location.href = 'login.html';
   });
+
 
 
 
