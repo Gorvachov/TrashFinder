@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+       <head>
+        <meta charset=“utf-8” />
+        <title>Mapa - Trash Finder</title>
+        <link rel="stylesheet" href="css/index.css" />
+        </head>
+      <body>
+<header class="navbar">
+    <div class="container nav-content">
+      <div class="logo">
+        <a class="link" href = "dashboard.html">
+        <img src="img/logo.png" width="36" height="36" alt="Logo" />
+        <span class="logo-text">TRASH FINDER</span>
+        </a>
+      </div>
+      <div class="nav-buttons">
+        <button id="logoutBtn" class="btn btn-secondary">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+  <h1>Mapa de contenedores</h1>
+        <div class="map-container">
+        <img src="img/map-sanmiguel.jpg" class="map-img" id="mapa-sanmiguel" alt="Mapa San Miguel">
+        </div>
+  </div> 
+        <div class="map-actions">
+          <button class="btn btn-terciary btn-large" id = "btn-mapa" type ="button" onclick="mostrarRuta()">Ruta de recolección</button>
+        </div>
+             <script src="js/map.js" defer> </script>
+      </body>
+</html>
