@@ -50,10 +50,13 @@ byId('registerForm')?.addEventListener('submit', (e) => {
     window.location.href = 'tutorial.html';
     return;
   }
+  if (user.tipo === 'recolector') {
+    window.location.href = 'dashboard.html';
+    return;
+  }
 
-  // Si NO es ciudadano, va al dashboard normal
-  window.location.href = 'dashboard.html';
 });
+
 
 
 
