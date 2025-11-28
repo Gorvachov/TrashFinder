@@ -51,11 +51,12 @@ byId('registerForm')?.addEventListener('submit', (e) => {
     return;
   }
   if (user.tipo === 'recolector') {
-    window.location.href = 'dashboard.html';
+    window.location.href = 'tutorial_recolector.html';
     return;
   }
 
 });
+
 
 
 
