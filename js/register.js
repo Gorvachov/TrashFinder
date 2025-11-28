@@ -46,8 +46,9 @@ byId('registerForm')?.addEventListener('submit', (e) => {
   users.push(user);
   saveUsers(users);
   setSession(user.email);           // inicia sesión automáticamente
-  window.location.href = 'dashboard.html';
+  window.location.href = 'tutorial.html';
 });
+
 
 
 
