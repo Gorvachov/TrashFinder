@@ -47,12 +47,20 @@ byId('registerForm')?.addEventListener('submit', (e) => {
   saveUsers(users);
   setSession(user.email);           // inicia sesión automáticamente
   // Marcar que debe mostrarse el tutorial
-  if (user.tipo === 'ciudadano') {
-    localStorage.setItem("showTutorial", "true");
+  const rawTipo = String(
+    user.tipo ?? user.rol ?? user.role ?? user.userType ?? ''
+  ).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  
+  const esCiudadano =
+    rawTipo.includes('ciud') || Number(rawTipo) === 1;
+  
+  if (esCiudadano) {
+    localStorage.setItem('showTutorial', 'true');
     window.location.href = 'tutorial.html';
   } else {
     window.location.href = 'dashboard.html';
   }
 
 });
+
 
