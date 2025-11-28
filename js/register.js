@@ -46,5 +46,13 @@ byId('registerForm')?.addEventListener('submit', (e) => {
   users.push(user);
   saveUsers(users);
   setSession(user.email);           // inicia sesión automáticamente
-  window.location.href = 'dashboard.html';
+  // Marcar que debe mostrarse el tutorial
+  if (user.tipo === 'ciudadano') {
+    localStorage.setItem("showTutorial", "true");
+    window.location.href = 'tutorial.html';
+  } else {
+    window.location.href = 'dashboard.html';
+  }
+
 });
+
