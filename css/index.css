@@ -700,11 +700,12 @@ body.dark-mode .alert-map-placeholder {
   color: #ccc;
 }
 
-
-
-
-
-
+/*Para los botones del mapa*/
+.map-actions {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;     /* (opcional) centra verticalmente */
+}
 
 
 
