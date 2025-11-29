@@ -1,7 +1,7 @@
 const puntosEl = document.getElementById("total-puntos");
 const historialList = document.getElementById("historial-list");
 const historialVacio = document.getElementById("historial-vacio");
-let puntos = 320;
+let puntos = 999;
 
 // Cargar historial al inicio
 window.addEventListener('load', () => {
