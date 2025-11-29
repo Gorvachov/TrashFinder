@@ -706,3 +706,154 @@ body.dark-mode .alert-map-placeholder {
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* (opcional) centra verticalmente */
 }
+
+/* Modal de compartir logros */
+.modal-compartir {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-compartir.active {
+  display: flex;
+}
+
+.modal-compartir-content {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--light-gray);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  background: var(--green-primary);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.logro-badge {
+  background: linear-gradient(135deg, var(--green-primary) 0%, #6ab02f 100%);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.3);
+  min-width: 260px;
+}
+
+.social-buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+}
+
+.btn-social-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.btn-social-share:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-social-share.facebook {
+  background: #1877F2;
+}
+
+.btn-social-share.twitter {
+  background: #1DA1F2;
+}
+
+.btn-social-share.whatsapp {
+  background: #25D366;
+}
+
+.status-compartir {
+  padding: 0.8rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.status-compartir.success {
+  background: #e8f5e0;
+  color: #5a9430;
+}
+
+.status-compartir.error {
+  background: #ffe5d4;
+  color: #d63301;
+}
+
+.status-compartir.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .modal-compartir-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+  
+  .social-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .logro-badge {
+    min-width: auto;
+    padding: 1.2rem;
+  }
+}
+
