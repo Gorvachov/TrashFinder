@@ -1,83 +1,74 @@
 // ===== Helpers =====
 const loadUsers = () => JSON.parse(localStorage.getItem("tf_users") || "[]");
-const saveUsers = (users) => localStorage.setItem("tf_users", JSON.stringify(users));
-const setSession = (email) => localStorage.setItem("tf_session", email);
-
+const saveUsers = (u) => localStorage.setItem("tf_users", JSON.stringify(u));
 const byId = (id) => document.getElementById(id);
 
-// ===== Cargar datos previos (si el usuario volvió al formulario) =====
-window.onload = () => {
-    const campos = [
-        "r-username",
-        "r-nombres",
-        "r-apepat",
-        "r-apemat",
-        "r-telefono",
-        "r-email"
-    ];
+// ===== Cargar datos del usuario logueado =====
+window.addEventListener("DOMContentLoaded", () => {
+    const emailSesion = localStorage.getItem("tf_session");
+    const users = loadUsers();
+    const me = users.find(u => u.email === emailSesion);
 
-    campos.forEach(id => {
-        const valor = localStorage.getItem("draft_" + id);
-        if (valor) byId(id).value = valor;
-    });
-};
+    if (!me) {
+        alert("No hay sesión activa");
+        window.location.href = "login.html";
+        return;
+    }
 
-// ===== Guardar datos mientras escribe (modo borrador) =====
-["r-username","r-nombres","r-apepat","r-apemat","r-telefono","r-email"].forEach(id => {
-    const el = byId(id);
-    el?.addEventListener("input", () => {
-        localStorage.setItem("draft_" + id, el.value);
-    });
+    // Rellenar campos
+    byId("r-username").value = me.username || "";
+    byId("r-nombres").value = me.nombres || "";
+    byId("r-apepat").value = me.apepat || "";
+    byId("r-apemat").value = me.apemat || "";
+    byId("r-telefono").value = me.telefono || "";
+    byId("r-email").value = me.email || "";
 });
 
-// ===== Registrar usuario =====
+// ===== Guardar cambios (editar usuario) =====
 function guardarDatos() {
     const mensajeError = byId("mensajeError");
     mensajeError.textContent = "";
 
-    const user = {
-        id: Date.now(),
-        username: byId("r-username").value.trim(),
-        nombres: byId("r-nombres").value.trim(),
-        apepat: byId("r-apepat").value.trim(),
-        apemat: byId("r-apemat").value.trim(),
-        telefono: byId("r-telefono").value.trim(),
-        email: byId("r-email").value.trim().toLowerCase()
-    };
+    const emailSesion = localStorage.getItem("tf_session");
+    const users = loadUsers();
+    const idx = users.findIndex(u => u.email === emailSesion);
 
-    if (!user.username || !user.nombres || !user.apepat || !user.email) {
+    if (idx === -1) {
+        mensajeError.textContent = "Error: usuario no encontrado.";
+        return;
+    }
+
+    // Editar usuario existente
+    users[idx].username = byId("r-username").value.trim();
+    users[idx].nombres  = byId("r-nombres").value.trim();
+    users[idx].apepat   = byId("r-apepat").value.trim();
+    users[idx].apemat   = byId("r-apemat").value.trim();
+    users[idx].telefono = byId("r-telefono").value.trim();
+    users[idx].email    = byId("r-email").value.trim().toLowerCase();
+
+    // Validar obligatorios
+    if (!users[idx].username || !users[idx].nombres || !users[idx].apepat || !users[idx].email) {
         mensajeError.textContent = "Por favor completa todos los campos obligatorios.";
         return;
     }
 
-    const users = loadUsers();
-
-    if (users.some(u => u.email === user.email)) {
-        mensajeError.textContent = "Ya existe una cuenta con este correo.";
-        return;
-    }
-
-    users.push(user);
+    // Guardar en storage
     saveUsers(users);
-    setSession(user.email);
 
-    // Guardar datos de perfil para otras vistas
-    localStorage.setItem("perfilNombre", `${user.nombres} ${user.apepat}`);
-    localStorage.setItem("perfilEmail", user.email);
+    // Actualizar sesión si cambió el email
+    localStorage.setItem("tf_session", users[idx].email);
 
-    // Limpiar borradores
-    ["r-username","r-nombres","r-apepat","r-apemat","r-telefono","r-email"].forEach(id => {
-        localStorage.removeItem("draft_" + id);
-    });
+    // Actualizar datos de perfil
+    localStorage.setItem("perfilNombre", `${users[idx].nombres} ${users[idx].apepat}`);
+    localStorage.setItem("perfilEmail", users[idx].email);
 
-    // Redirigir
-    window.location.href = "dashboard.html";
+    alert("Datos actualizados correctamente.");
+    window.location.href = "perfil.html";
 }
 
-// ===== Dark mode global =====
+// ===== Modo oscuro =====
 document.addEventListener("DOMContentLoaded", () => {
-    const dark = localStorage.getItem("darkMode");
-    if (dark === "true") {
+    if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark-mode");
     }
 });
