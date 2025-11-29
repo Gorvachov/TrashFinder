@@ -99,5 +99,43 @@ if (googleBtn) {
   });
 }
 
+// ===============================
+// Login con Facebook REAL (Firebase)
+// ===============================
+const facebookBtn = document.getElementById("facebookLoginBtn");
+
+if (facebookBtn) {
+  facebookBtn.addEventListener("click", async () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+
+    try {
+      const result = await firebase.auth().signInWithPopup(provider);
+      const user = result.user;
+
+      // Crear sesión igual que Google
+      localStorage.setItem("tf_session", user.email);
+
+      // Guardar en tf_users si no existe
+      let users = JSON.parse(localStorage.getItem("tf_users") || "[]");
+
+      if (!users.some(u => u.email === user.email)) {
+        users.push({
+          email: user.email,
+          nombres: user.displayName,
+          tipo: "ciudadano",   // o recolector si tú decides
+          pass: null
+        });
+        localStorage.setItem("tf_users", JSON.stringify(users));
+      }
+
+      window.location.href = "dashboard.html";
+
+    } catch (err) {
+      console.error("Error Facebook Login:", err);
+      alert("No se pudo iniciar sesión con Facebook.");
+    }
+  });
+}
+
 
 
