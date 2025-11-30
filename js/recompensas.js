@@ -1,22 +1,66 @@
 const puntosEl = document.getElementById("total-puntos");
 const historialList = document.getElementById("historial-list");
 const historialVacio = document.getElementById("historial-vacio");
-let puntos = 320;
+const USERS_KEY = "tf_users";
+const SESSION_KEY = "tf_session";
+const sessionEmail = localStorage.getItem(SESSION_KEY);
+const historialKey = sessionEmail
+  ? `historial-canjes:${sessionEmail}`
+  : "historial-canjes";
+let puntos = 0;
+
+function getUsers() {
+  return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+}
+
+function findCurrentUser() {
+  if (!sessionEmail) return null;
+  return getUsers().find((u) => u.email === sessionEmail) || null;
+}
+
+function saveUser(updatedUser) {
+  const users = getUsers();
+  const idx = users.findIndex((u) => u.email === updatedUser.email);
+  if (idx === -1) return null;
+  users[idx] = updatedUser;
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  return updatedUser;
+}
+
+function setUserPoints(total) {
+  const user = findCurrentUser();
+  if (!user) return null;
+  user.puntos = total;
+  saveUser(user);
+  return total;
+}
+
+function syncPuntos() {
+  const user = findCurrentUser();
+  puntos = Number(user?.puntos || 0);
+  if (puntosEl) puntosEl.textContent = puntos;
+}
 
 // Cargar historial al inicio
 window.addEventListener('load', () => {
+    syncPuntos();
   cargarHistorial();
 });
 
 document.querySelectorAll(".canjear-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     const costo = parseInt(btn.dataset.cost);
+        if (!findCurrentUser()) {
+      alert("Inicia sesión para canjear recompensas.");
+      return;
+    }
     if (puntos < costo) {
       alert("❌ No tienes puntos suficientes");
       return;
     }
     
     puntos -= costo;
+     setUserPoints(puntos);
     puntosEl.textContent = puntos;
     
     // Guardar canje en localStorage
@@ -37,14 +81,14 @@ document.querySelectorAll(".canjear-btn").forEach(btn => {
 
 // Guardar canje en localStorage
 function guardarCanje(canje) {
-  let historial = JSON.parse(localStorage.getItem('historial-canjes') || '[]');
+  const historial = JSON.parse(localStorage.getItem(historialKey) || '[]');
   historial.unshift(canje);
-  localStorage.setItem('historial-canjes', JSON.stringify(historial));
+localStorage.setItem(historialKey, JSON.stringify(historial));
 }
 
 // Cargar y mostrar historial
 function cargarHistorial() {
-  const historial = JSON.parse(localStorage.getItem('historial-canjes') || '[]');
+  const historial = JSON.parse(localStorage.getItem(historialKey) || '[]');
   
   if (historial.length === 0) {
     historialVacio.style.display = 'block';
@@ -272,9 +316,9 @@ document.addEventListener('keydown', (e) => {
    📌 CONFIGURACIÓN DEL USUARIO
    ================================ */
 // Usa estos valores reales cuando tengas backend
-const puntosUsuario = 320;
-const puestoUsuario = 12;             // Ejemplo: NO está en top 10
-const distritoUsuario = "San Miguel"; // Ejemplo: NO ganador
+const puntosUsuario = puntos;
+const puestoUsuario = Number(findCurrentUser()?.puesto ?? 12); // Ejemplo: NO está en top 10
+const distritoUsuario = findCurrentUser()?.distrito || "San Miguel"; // Ejemplo: NO ganador
 
 // Configuraciones del mes
 const distritoGanador = "Miraflores";
@@ -285,20 +329,16 @@ const limitePuesto = 10;
 /* ================================
    📌 MANEJO DE HISTORIAL
    ================================ */
-function agregarAlHistorial(nombreRecompensa) {
-    const lista = document.getElementById("historial-list");
-    const vacio = document.getElementById("historial-vacio");
+function agregarAlHistorial(nombreRecompensa, puntosCanje = 0) {
+    const canje = {
+        recompensa: nombreRecompensa,
+        puntos: puntosCanje,
+        fecha: new Date().toLocaleDateString('es-PE'),
+        codigo: 'TF-' + Date.now().toString().slice(-6)
+    };
 
-    if (vacio) vacio.style.display = "none";
-
-    const card = document.createElement("article");
-    card.classList.add("dash-card");
-    card.innerHTML = `
-        <p class="dash-route-title">🎁 ${nombreRecompensa}</p>
-        <p class="dash-route-meta">Canjeado hoy</p>
-    `;
-
-    lista.appendChild(card);
+    guardarCanje(canje);
+    cargarHistorial();
 }
 
 //   🥇 RECOMPENSAS POR MEJORES PUESTOS
