@@ -201,6 +201,29 @@
       </button>
     </div>
 
+  <!-- 🔧 Notificación de mantenimiento (HU-030) -->
+<section class="dash-section">
+  <div class="dash-section-header">
+    <span>🔧 Contenedores en mantenimiento</span>
+    <button id="btnSimularMantenimiento" class="dash-link" type="button">
+      Simular mantenimiento
+    </button>
+  </div>
+
+  <article id="mantenimientoCard" class="dash-card hidden">
+    <p id="mantenimientoTitulo" class="dash-route-title"></p>
+    <p id="mantenimientoMeta" class="dash-route-meta"></p>
+
+    <button id="btnReactivar"
+            class="btn btn-primary dash-small-btn"
+            type="button">
+      Marcar como reparado
+    </button>
+  </article>
+</section>
+
+<script src="js/mantenimiento.js"></script>
+
     <!-- Card que se muestra SOLO cuando la alerta llega bien -->
     <article id="emergencyAlertCard" class="dash-card hidden">
       <p id="emergency-title" class="dash-route-title"></p>
@@ -303,6 +326,7 @@
   <script src="js/theme.js"></script>
 </body>
 </html>
+
 
 
 
