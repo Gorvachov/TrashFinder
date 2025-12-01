@@ -10,6 +10,16 @@
   margin-top: 1rem;
 }
 
+.ranking-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.ranking-toggle .btn {
+  min-width: 220px;
+}
 .ranking-section {
   background: #fff;
   border-radius: 12px;
