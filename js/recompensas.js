@@ -85,20 +85,24 @@ function renderEstadosRecompensas() {
 
 function syncPuntos() {
   const user = findCurrentUser();
-  puntos = Number(user?.puntos || 0);
+  const puntosRanking = rankingInfo.currentUser?.puntos;
+
+  puntos = Number(user?.puntos ?? puntosRanking ?? 0);
   if (puntosEl) puntosEl.textContent = puntos;
 }
 
 // Cargar historial al inicio
 window.addEventListener('load', () => {
+  refreshRankingInfo();
   syncPuntos();
   cargarHistorial();
-  refreshRankingInfo();
   renderEstadosRecompensas();
 });
 
 document.querySelectorAll(".canjear-btn").forEach(btn => {
   btn.addEventListener("click", () => {
+    refreshRankingInfo();
+    syncPuntos();
     const costo = parseInt(btn.dataset.cost);
         if (!findCurrentUser()) {
       alert("Inicia sesión para canjear recompensas.");
